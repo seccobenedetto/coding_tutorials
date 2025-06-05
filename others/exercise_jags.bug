@@ -1,0 +1,14 @@
+
+model {
+  # Likelihood: Each observation X[i] ~ Bernoulli(p)
+  for (i in 1:length(X)) {
+    X[i] ~ dbern(p)
+  }
+
+  # Prior on p: Uniform(0,1), which is Beta(1,1)
+  p ~ dbeta(1, 1)
+
+  # Prediction distribution: number of successes in n_next future trials
+  y ~ dbin(p, n_next)
+}
+
